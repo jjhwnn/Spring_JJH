@@ -28,7 +28,7 @@
     
     <Resource
 		
-		name = "jdbc/elapid" 
+		name = "jdbc/mvc" 
 		auth = "Container"
 		type = "javax.sql.DataSource"
 		maxTotal = "8" 
