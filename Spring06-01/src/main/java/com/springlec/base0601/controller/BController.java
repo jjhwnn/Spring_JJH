@@ -45,7 +45,7 @@ public class BController {
 		
 		return "redirect:list";
 	}
-	
+	 
 	
 	@RequestMapping("/content_view")
 	public String contentView(HttpServletRequest request, Model model) {
