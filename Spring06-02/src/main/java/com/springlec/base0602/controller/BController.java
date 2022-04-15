@@ -1,4 +1,4 @@
-package com.springlec.base0601.controller;
+package com.springlec.base0602.controller;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -8,25 +8,43 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.springlec.base0601.command.BCommand;
-import com.springlec.base0601.command.BContentViewCommand;
-import com.springlec.base0601.command.BDeleteCommand;
-import com.springlec.base0601.command.BListCommand;
-import com.springlec.base0601.command.BModifyCommand;
-import com.springlec.base0601.command.BWriteCommand;
-import com.springlec.base0601.dto.BDto;
+import com.springlec.base0602.command.BCommand;
+import com.springlec.base0602.command.BContentViewCommand;
+import com.springlec.base0602.command.BDeleteCommand;
+import com.springlec.base0602.command.BListCommand;
+import com.springlec.base0602.command.BModifyCommand;
+import com.springlec.base0602.command.BWriteCommand;
+import com.springlec.base0602.dto.BDto;
+
+
 
 @Controller
 public class BController {
 
 	BCommand command = null;
+	private BCommand listCommand = null;
+	private BCommand writeCommand = null;
+	private BCommand contentCommand = null;
+	private BCommand modifyCommand = null;
+	private BCommand deleteCommand = null;
+	
+	@Autowired
+	public void auto(BCommand list, BCommand write, BCommand content, BCommand modify, BCommand delete) {
+		this.listCommand = list;
+		this.writeCommand = write;
+		this.contentCommand  = content;
+		this.modifyCommand = modify;
+		this.deleteCommand = delete;
+	}
+	
+	
 	
 	@RequestMapping("/list")
 	public String list(Model model) {
-		
 		System.out.println("list()");
-		command = new BListCommand();
-		command.execute(model);
+		// -----
+		listCommand.execute(model);
+		
 		return "list";
 	}
 	
@@ -40,8 +58,7 @@ public class BController {
 	public String write(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
-		command = new BWriteCommand();
-		command.execute(model);
+		writeCommand.execute(model);
 		
 		return "redirect:list";
 	}
@@ -51,8 +68,7 @@ public class BController {
 	public String contentView(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
-		command = new BContentViewCommand();
-		command.execute(model);
+		contentCommand.execute(model);
 
 		return "content_view";
 	}
@@ -61,8 +77,7 @@ public class BController {
 	public String modify(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
-		command = new BModifyCommand();
-		command.execute(model);
+		modifyCommand.execute(model);
 		
 		return "redirect:list";
 	}
@@ -70,8 +85,8 @@ public class BController {
 	@RequestMapping String delete(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
-		command = new BDeleteCommand();
-		command.execute(model);
+		deleteCommand.execute(model);
+		
 		
 		return "redirect:list";
 	}
