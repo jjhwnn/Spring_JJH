@@ -2,21 +2,21 @@ package com.springlec.base0701.command;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.springlec.base0701.dto.BDto;
-import com.springlec.base0701dao.BDao;
+import com.springlec.base0701.dao.BDao;
+
 
 public class BListCommand implements BCommand {
 
 	@Override
-	public void execute(Model model) {
+	public void execute(SqlSession sqlSession, Model model) {
 		
 		//----
-		BDao dao = new BDao();
-		ArrayList<BDto> dtos = dao.list();
+		BDao dao = sqlSession.getMapper(BDao.class);
 		
-		model.addAttribute("list", dtos);
+		model.addAttribute("list", dao.listDao());
 		
 	}
 

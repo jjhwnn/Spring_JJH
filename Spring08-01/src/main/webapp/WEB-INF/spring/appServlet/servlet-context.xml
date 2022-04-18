@@ -44,6 +44,8 @@
 		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
 	</beans:bean>
 	
+	
+	
 	<beans:bean name="list" class="com.springlec.base0801.command.BListCommand" />
 	<beans:bean name="write" class="com.springlec.base0801.command.BWriteCommand" />
 	<beans:bean name="delete" class="com.springlec.base0801.command.BDeleteCommand" />

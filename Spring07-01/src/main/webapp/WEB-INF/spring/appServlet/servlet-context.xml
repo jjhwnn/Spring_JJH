@@ -34,4 +34,24 @@
 	<beans:bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
 		<beans:property name="dataSource" ref="dataSource"/>
 	 </beans:bean>
+	 
+	 	<!-- mybatis -->
+	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/>
+							
+							<!--쿼리문이 들어갈 property  -->
+		<beans:property name="mapperLocations" value="classpath:com/springlec/base0701/dao/mapper/*.xml" />
+	</beans:bean>
+	
+	<beans:bean name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+			<!-- 생성자 -->
+		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean name="list" class="com.springlec.base0701.command.BListCommand" />
+	<beans:bean name="contentView" class="com.springlec.base0701.command.BContentViewCommand" />
+	<beans:bean name="write" class="com.springlec.base0701.command.BWriteCommand" />
+	<beans:bean name="modify" class="com.springlec.base0701.command.BModifyCommand" />
+	<beans:bean name="delete" class="com.springlec.base0701.command.BDeleteCommand" />
+	
 </beans:beans>

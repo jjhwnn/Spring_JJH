@@ -63,7 +63,6 @@ public class HomeController {
 	@RequestMapping("/list")
 	public String list(Model model) {
 		
-		
 		list.execute(sqlSession, model);
 	
 		return "/list";

@@ -1,4 +1,4 @@
-package com.springlec.base0701dao;
+package com.springlec.base0701.dao;
 
 import java.beans.BeanProperty;
 import java.sql.Connection;
@@ -20,11 +20,11 @@ import org.springframework.jdbc.core.PreparedStatementSetter;
 import com.springlec.base0701.dto.BDto;
 import com.springlec.base0701.util.Constant;
 
-public class BDao {
+public class BDao_ {
 
 	JdbcTemplate template;
 	
-	public BDao() {
+	public BDao_() {
 		
 		this.template = Constant.template;
 		

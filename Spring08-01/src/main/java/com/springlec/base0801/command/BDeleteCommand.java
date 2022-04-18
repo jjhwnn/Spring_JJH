@@ -14,7 +14,7 @@ public class BDeleteCommand implements BCommand {
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
 		
-		Map<String, Object> map = model.asMap();
+		Map<String, Object> map = model.asMap(); // model의 메서드 암호화 풀어주는 메서드
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
